@@ -15,4 +15,14 @@ const app = firebase.initializeApp({
 })
 
 export const auth = app.auth()
+
+export const firestore = app.firestore()
+
+
+export const db = {
+
+  folders:firestore.collection('folders'),
+  files:firestore.collection('files')
+}
+
 export default app

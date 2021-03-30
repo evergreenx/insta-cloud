@@ -10,10 +10,13 @@ import ForgotPassword from "./ForgotPassword"
 import UpdateProfile from "./UpdateProfile"
 import Dashboard from './drive/Dashboard'
 
+
+
+import '../Css/main.css'
 function App() {
   return (
    
-      <div className>
+      <div className="app">
         <Router>
           <AuthProvider>
             <Switch>
@@ -28,6 +31,9 @@ function App() {
             </Switch>
           </AuthProvider>
         </Router>
+
+
+
       </div>
   
   )

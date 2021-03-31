@@ -22,8 +22,9 @@ function App() {
             <Switch>
 
 
-            <PrivateRoute extact path="/" component={Dashboard} />
-              <PrivateRoute path="/user" component={Profile} />
+            <PrivateRoute exact path="/" component={Dashboard} />
+
+            <PrivateRoute path="/user" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />

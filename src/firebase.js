@@ -1,4 +1,7 @@
-import firebase from "firebase"
+import firebase from "firebase/app"
+import 'firebase/auth';
+import 'firebase/firestore';
+
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyDHbrQ2eaRY3BlcwZBL7he9Ntqh1QwRE1g",
@@ -14,9 +17,9 @@ const app = firebase.initializeApp({
   
 })
 
-export const auth = app.auth()
+export const auth = app.auth();
 
-export const firestore = app.firestore()
+export const firestore = app.firestore();
 
 
 export const db = {
@@ -25,4 +28,5 @@ export const db = {
   files:firestore.collection('files')
 }
 
-export default app
+// export default app
+// firebase.initializeApp(app);

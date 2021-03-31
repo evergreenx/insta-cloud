@@ -9,6 +9,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import {db} from '../../firebase'
+
 
 export default function AddFolderButton() {
   const [open, setOpen] = useState(false);
@@ -26,9 +28,19 @@ export default function AddFolderButton() {
 
     e.preventDefault();
 
+
+    db.folders.add({
+
+      name:name
+    })
     closeModal();
+
+
+
     
-    alert(name);
+    // alert(name);
+
+    console.log('it is working now')
 
   }
 
@@ -36,7 +48,7 @@ export default function AddFolderButton() {
   
   return (
     <>
-      <Button variant="contained" color="success" onClick={openModal}>
+      <Button variant="contained" color="primary" onClick={openModal}>
         <CreateNewFolderIcon />
       </Button>
       <Modal
@@ -70,7 +82,7 @@ export default function AddFolderButton() {
                   <CardActions>
                     <Button
                       variant="contained"
-                      color="primary"
+                      color="secondary"
                       onClick={closeModal}
                     >
                       cancel
@@ -81,7 +93,7 @@ export default function AddFolderButton() {
                       type="submit"
                       onClick={openModal}
                     >
-                      submit
+                      add folder
                     </Button>
                   </CardActions>
                 </form>

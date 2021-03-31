@@ -13,9 +13,10 @@ export default function NavbarComponent() {
               
 
               <li className="nav-item">
-              <NavLink className="nav-link" to="/profile">
+
+              <Link className="nav-link" to="/user">
                 Profile
-              </NavLink>
+              </Link>
             </li>
 
               </ul>

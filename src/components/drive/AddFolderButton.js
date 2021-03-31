@@ -10,6 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import {db} from '../../firebase'
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 export default function AddFolderButton() {
@@ -48,9 +49,13 @@ export default function AddFolderButton() {
   
   return (
     <>
+      <Tooltip title="Add Folder">
+
       <Button variant="contained" color="primary" onClick={openModal}>
         <CreateNewFolderIcon />
       </Button>
+      </Tooltip>
+    
       <Modal
         open={open}
         m={2}

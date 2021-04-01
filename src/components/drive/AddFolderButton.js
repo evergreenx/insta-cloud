@@ -4,19 +4,20 @@ import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
 import Modal from "@material-ui/core/Modal";
 import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import {db} from '../../firebase'
-import Tooltip from '@material-ui/core/Tooltip';
+import { database } from "../../firebase";
+import Tooltip from "@material-ui/core/Tooltip";
+import { ToastContainer, toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AddFolderButton() {
   const [open, setOpen] = useState(false);
 
-  const [name, setName] = useState('')
+  const [name, setName] = useState("");
   const openModal = () => {
     setOpen(true);
   };
@@ -25,37 +26,30 @@ export default function AddFolderButton() {
     setOpen(false);
   };
 
-  const handleSubmit=(e)=>{
-
+  const handleSubmit = (e) => {
     e.preventDefault();
 
+    database.folders.add({
+      name: name,
+    });
 
-    db.folders.add({
-
-      name:name
-    })
+    toast("Folder created successfully !");
     closeModal();
 
-
-
-    
     // alert(name);
 
-    console.log('it is working now')
+    console.log("it is working now");
+  };
 
-  }
-
-
-  
   return (
     <>
+      <ToastContainer style={{ color: "green" }} />
       <Tooltip title="Add Folder">
-
-      <Button variant="contained" color="primary" onClick={openModal}>
-        <CreateNewFolderIcon />
-      </Button>
+        <Button variant="contained" color="primary" onClick={openModal}>
+          <CreateNewFolderIcon />
+        </Button>
       </Tooltip>
-    
+
       <Modal
         open={open}
         m={2}
@@ -70,40 +64,36 @@ export default function AddFolderButton() {
       >
         <Fade in={open}>
           <Card variant="outlined" className="col-lg-6 mx-auto">
-           
-              <CardContent>
-                <form Validate autoComplete="off" onSubmit={handleSubmit}>
-                  <TextField
-                    id="outlined-basic"
-                    label="File Name"
-                    variant="outlined"
-                    helperText="enter file name!"
-                    fullWidth
+            <CardContent>
+              <form autoComplete="off" onSubmit={handleSubmit}>
+                <TextField
+                  id="outlined-basic"
+                  label="File Name"
+                  variant="outlined"
+                  helperText="enter file name!"
+                  fullWidth
+                  onChange={(e) => setName(e.target.value)}
+                />
 
-                    onChange={e =>setName(e.target.value)}
-                   
-                  />
-
-                  <CardActions>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={closeModal}
-                    >
-                      cancel
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      onClick={openModal}
-                    >
-                      add folder
-                    </Button>
-                  </CardActions>
-                </form>
-              </CardContent>
-         
+                <CardActions>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={closeModal}
+                  >
+                    cancel
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    onClick={openModal}
+                  >
+                    add folder
+                  </Button>
+                </CardActions>
+              </form>
+            </CardContent>
           </Card>
         </Fade>
       </Modal>

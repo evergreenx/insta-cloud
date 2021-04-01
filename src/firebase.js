@@ -4,29 +4,30 @@ import 'firebase/firestore';
 
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyDHbrQ2eaRY3BlcwZBL7he9Ntqh1QwRE1g",
-  authDomain: "todo-app-2bd4a.firebaseapp.com",
-  databaseURL: "https://todo-app-2bd4a.firebaseio.com",
-  projectId: "todo-app-2bd4a",
-  storageBucket: "todo-app-2bd4a.appspot.com",
-  messagingSenderId: "884213506436",
-  appId: "1:884213506436:web:d5258fcb81c490ebf3bdd1",
-  measurementId: "G-FWLKFTDLGJ"
+  apiKey: "AIzaSyDbiFCpOrcMW0hZQhthjKdhqcRAtLdaowg",
+  authDomain: "insta-drive-ee98c.firebaseapp.com",
+  projectId: "insta-drive-ee98c",
+  storageBucket: "insta-drive-ee98c.appspot.com",
+  messagingSenderId: "272535344275",
+  appId: "1:272535344275:web:16bad5712128198eb12966",
+  measurementId: "G-V76FZX3CSG"
+
 
 
   
-})
+});
 
-export const auth = app.auth();
-
-export const firestore = app.firestore();
-
-
-export const db = {
-
-  folders:firestore.collection('folders'),
-  files:firestore.collection('files')
+const firestore = app.firestore()
+export const database = {
+  folders: firestore.collection("folders"),
+  files: firestore.collection("files"),
+  formatDoc: doc => {
+    return { id: doc.id, ...doc.data() }
+  },
+  getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp,
 }
 
-// export default app
-// firebase.initializeApp(app);
+  // firebase.analytics();
+// export const storage = app.storage()
+export const auth = app.auth()
+export default app

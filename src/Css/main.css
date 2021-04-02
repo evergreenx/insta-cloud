@@ -6,4 +6,20 @@
   outline: none;
   border: none;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  color: #003b46;
+}
+
+.MuiButton-root {
+  background-color: #66a5ad !important;
+}
+
+a {
+  color: #66a5ad !important;
+  text-decoration: none;
+}
 /*# sourceMappingURL=main.css.map */

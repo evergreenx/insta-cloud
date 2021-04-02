@@ -5,7 +5,7 @@ export default function NavbarComponent() {
   return (
     <nav className="navbar navbar-expand navbar-light bg-light">
       <NavLink className="navbar-brand" to="/">
-    SafeDrive
+  InstaDrive
       </NavLink>
    
             <div className="navbar-collapse" id="navbarText">

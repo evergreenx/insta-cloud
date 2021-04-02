@@ -11,13 +11,17 @@ import Fade from "@material-ui/core/Fade";
 import { database } from "../../firebase";
 import Tooltip from "@material-ui/core/Tooltip";
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AddFolderButton() {
-  const [open, setOpen] = useState(false);
 
+import { useAuth } from "../../contexts/AuthContext";
+
+
+export default function AddFolderButton({currentFolder}) {
+  const [open, setOpen] = useState(false);
+  const { currentUser } = useAuth();
   const [name, setName] = useState("");
+
   const openModal = () => {
     setOpen(true);
   };
@@ -29,11 +33,17 @@ export default function AddFolderButton() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
+    if(currentFolder == null) return
     database.folders.add({
       name: name,
+      parentId:currentFolder.id,
+      userId: currentUser.uid,
+      // path,
+      createdAt: database.getCurrentTimestamp(),
     });
 
-    toast("Folder created successfully !");
+    toast.success("Folder created successfully !");
     closeModal();
 
     // alert(name);
@@ -43,7 +53,7 @@ export default function AddFolderButton() {
 
   return (
     <>
-      <ToastContainer style={{ color: "green" }} />
+      <ToastContainer/>
       <Tooltip title="Add Folder">
         <Button variant="contained" color="primary" onClick={openModal}>
           <CreateNewFolderIcon />
